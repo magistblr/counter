@@ -7,49 +7,50 @@ import { v1 } from 'uuid';
 
 export type CounterType = number
 
-export type ButtonValueType = {
-  id: string
-  value: "inc" | "reset" | "set"
-  type: () => void
-}
+// export type ValueButtonType = "inc" | "reset" | "set" | null
 
+// export type ClickButtonType = (() => void) | null
+
+// type SettingsType = 
 
 function App() {
 
 
-  const counterValue = {
-    start: 3,
-    end: 5
-  }
 
 
-  let [count, setCount] = useState<CounterType>(counterValue.start)
+  let [count, setCount] = useState<CounterType>(0)
+  // let [settingsButton, setSettingsButton] = useState<SettingsType>(null)
+  let [valueButton, setValueButton] = useState("")
+  // let [click, setClick] = useState<ClickButtonType>(null)
+  let [maxValue, setMaxValue] = useState<Number>(0)
+  let [startValue, setStartValue] = useState<Number>(0)
 
 
   const incCount = () => {
-    if (count <= counterValue.end) {
-      setCount(count + 1)
-    }
+    setValueButton("inc")
+    setCount(count + 1)
+    // setClick(click)
   }
-
 
   const resetCount = () => {
+    setValueButton("reset")
+
     setCount(count = 0)
+    // setClick(click)
   }
 
-  const setSetCount = () => {
+
+  const settingsCount = () => {
     // setCount(count = 0)
   }
 
-  const buttonInc: ButtonValueType = {id: v1(), value: "inc", type: resetCount}
-  const buttonReset: ButtonValueType = {id: v1(), value: "reset", type: incCount}
-  const buttonSet: ButtonValueType = {id: v1(), value: "set", type: setSetCount}
+
 
 
   return (
     <div className={s.app_wrapper}>
-        <Settings />
-        <Counter count={count} buttonInc={buttonInc} buttonReset={buttonReset} buttonSet={buttonSet}/>
+        {/* <Settings buttonSet={buttonSet}/> */}
+        <Counter count={count} valueButton={valueButton} incCount={incCount} resetCount={resetCount} settingsCount={settingsCount}/>
     </div>
   );
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import { ButtonValueType } from '../App'
 import { Button } from './Button'
 import s from "./Display.module.css"
 
@@ -7,11 +6,10 @@ export type SettingsType = {
   count: number
   resetCount: () => void
   incCount: () => void
-  buttonSet: ButtonValueType
 }
 
 
-export const Settings: React.FC<SettingsType> = ({buttonSet}) => {
+export const Settings: React.FC<SettingsType> = () => {
   return (
     <div className={s.wrapper}>
       <div className={s.app}>
@@ -25,7 +23,7 @@ export const Settings: React.FC<SettingsType> = ({buttonSet}) => {
             <input className={s.input} type="number" step="1" />
           </div>
         </div>
-        <Button    buttonSet={buttonSet}    />
+        {/* <Button    buttonSet={buttonSet}    /> */}
       </div>
     </div>
   )

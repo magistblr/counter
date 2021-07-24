@@ -1,31 +1,30 @@
 import React from 'react'
-import { ButtonValueType } from '../App'
+// import { ValueButtonType } from '../App'
 import { Button } from './Button'
 import s from "./Display.module.css"
 import NumberCount from './NumberCount'
+import ss from './Button.module.css'
 
 export type CounterType = {
   count: number
   resetCount: () => void
   incCount: () => void
-  buttonInc: ButtonValueType
-  buttonReset: ButtonValueType
+  settingsCount: () => void
+  valueButton: string
 }
 
 
-export const Counter: React.FC<CounterType> = ({count, incCount, resetCount, buttonInc, buttonReset}) => {
+export const Counter: React.FC<CounterType> = ({count, valueButton, incCount, resetCount, settingsCount}) => {
   return (
     <div className={s.app_wrapper}>
       <div className={s.app}>
         <div className={s.display}>
           <NumberCount count={count}/>
         </div>
-          <Button incCount={incCount}
-                  resetCount={resetCount}
-                  count={count}
-                  buttonInc={buttonInc}
-                  buttonReset={buttonReset}
-                  />
+        <div className={ss.counter_wrapper}>
+          {/* <Button valueButton={valueButton} incCount={incCount} resetCount={resetCount} settingsCount={settingsCount}/> */}
+          {/* <Button valueButton={valueButton} resetCount={resetCount} incCount={incCount} settingsCount={settingsCount}/> */}
+        </div>
       </div>
     </div>
   )
