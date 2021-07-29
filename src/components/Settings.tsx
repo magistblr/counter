@@ -12,13 +12,12 @@ export type SettingsType = {
   titleStart: number
   callbackInputValueStart: (value: number) => void
   callbackInputValueMax: (value: number) => void
-  disabledCallback: (value: string) => void
-  disableButton: boolean
   incorrectClass: boolean
+  text: string
 }
 
 
-export const Settings: React.FC<SettingsType> = ({descrSet, callback, titleStart, titleMax, callbackInputValueStart, callbackInputValueMax,count, disabledCallback, disableButton, incorrectClass}) => {
+export const Settings: React.FC<SettingsType> = ({descrSet, callback, titleStart, titleMax, callbackInputValueStart, callbackInputValueMax,count, incorrectClass, text}) => {
 
   let [valueMax, setValueMax] = useState(0)
   let [valueStart, setValueStart] = useState(0)
@@ -50,7 +49,7 @@ export const Settings: React.FC<SettingsType> = ({descrSet, callback, titleStart
           </div>
         </div>
         <div className={ss.settings_wrapper}>
-          <Button descr={descrSet} callback={callback} count={count} disabledCallback={disabledCallback} disableButton={disableButton}/>
+          <Button descr={descrSet} callback={callback} count={count} maxValue={titleMax} incorrectClass={incorrectClass} startValue={titleStart} text={text}/>
         </div>
       </div>
     </div>

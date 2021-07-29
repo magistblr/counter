@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.module.css';
 import { Counter } from './components/Counter';
 import s from "./App.module.css"
@@ -19,36 +19,52 @@ export const App = () => {
   let [count, setCount] = useState(0)
   let [maxValue, setMaxValue] = useState(0)
   let [startValue, setStartValue] = useState(0)
-  let [disableButton, setDisableButton] = useState(false)
+  let [text, setText] = useState("Incorrect value!")
 
   const incorrectClass: boolean = (startValue < 0) || (maxValue < 0) || (startValue >= maxValue)
 
-  function settingsCount() {
-    return (
-      setCount(startValue)
-      )
+  const incorrect = "Incorrect value!"
+
+
+    const onText = () => {
+      if(incorrectClass){
+        setText(incorrect)
+      } if(count === 0){
+        setText("enter values and press 'set'")
+      }else setText("enter values and press 'set'")
+    }
+
+
+    function settingsCount() {
+      onText()
+      return setCount(startValue)
     }
 
     const inputValueMax = (value: number) => {
+      onText()
       setMaxValue(value)
     }
 
     const inputValueStart = (value: number) => {
+      onText()
       setStartValue(value)
     }
 
     const incCount = () => {
+      onText()
       if(count < maxValue){
         setCount(count + 1)
       }
     }
 
     const resetCount = () => {
+      onText()
       setCount(count = startValue)
     }
 
 
   const onclick = (value: string) => {
+      onText()
       if(value === "inc"){
         incCount()
       }if(value === "reset"){
@@ -64,15 +80,7 @@ export const App = () => {
   //   }else setDisableButton(false)
   // }
 
-
-  const disabled = (value: string) => {
-    if((value === "inc") && (maxValue === count)) {
-      return setDisableButton(true)
-    }if((value === "set") && (startValue === count)) {
-      return setDisableButton(true)
-    } if (startValue > 0) {setDisableButton(false)}
-  }
-
+ 
 
   return (
     <div className={s.app_wrapper}>
@@ -83,19 +91,17 @@ export const App = () => {
                   titleStart={startValue}
                   callbackInputValueStart={inputValueStart}
                   callbackInputValueMax={inputValueMax}
-                  disableButton={disableButton}
-                  disabledCallback={disabled}
                   incorrectClass={incorrectClass}
+                  text={text}
                   />
         <Counter  count={count}
                   callback={onclick}
                   descrInc={descrInc}
                   descrReset={descrReset}
-                  disableButton={disableButton}
-                  disabledCallback={disabled}
                   titleMax={maxValue}
                   titleStart={startValue}
                   incorrectClass={incorrectClass}
+                  text={text}
                   />
     </div>
   );

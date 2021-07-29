@@ -6,12 +6,14 @@ export type ButtonType = {
   descr: TitleType
   callback: (value: string) => void
   count: number
-  disabledCallback: (value: string) => void
-  disableButton: boolean
+  maxValue: number
+  incorrectClass: boolean
+  startValue: number
+  text: string
 };
 
 
-export const Button: React.FC<ButtonType> = ({descr, callback, disabledCallback, disableButton}) => {
+export const Button: React.FC<ButtonType> = ({descr, callback, count, maxValue, incorrectClass, startValue, text}) => {
 
   let [valueButton, setValueButton] = useState<TitleType>("")
 
@@ -41,17 +43,15 @@ export const Button: React.FC<ButtonType> = ({descr, callback, disabledCallback,
   }
 
   const disable = () => {
-    if(disableButton && (valueButton === "inc")) {
-      return disableButton
-    } if(disableButton && (valueButton === "reset")) {
-      return disableButton
-    }if(disableButton && (valueButton === "set")) {
-      return disableButton
+    if((valueButton === "inc") && (count === maxValue) || incorrectClass){
+      return true
+    }if((valueButton === "reset") && (count <= startValue) || incorrectClass){
+      return true
+    }if((valueButton === "set") && (text === "Incorrect value!")){
+      return true
     } else return false
   }
 
-
-  disabledCallback(valueButton)
 
 
   return (
