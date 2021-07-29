@@ -21,4 +21,12 @@
   opacity: 0.5;
 }
 
+.settings_wrapper {
+  display: flex;
+  justify-content: center;
+  border: 3px solid aqua;
+  border-radius: 7px;
+  margin-top: 20px;
+  padding: 10px 50px;
+}
 

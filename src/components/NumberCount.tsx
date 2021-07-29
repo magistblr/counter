@@ -3,15 +3,22 @@ import s from "./NumberCount.module.css"
 
 export type NumberType = {
   count: number
+  maxValue: number
+  incorrectClass: boolean
 }
 
 
-const NumberCount: React.FC<NumberType> = ({count}) => {
+export const NumberCount: React.FC<NumberType> = ({count, maxValue, incorrectClass}) => {
+
+  const incorrect = "Incorrect value!"
+  const enter = "enter values and press 'set'"
+
   return (
     <div className={s.wrapper}>
-      <span className={count === 5 ? s.number_red : s.number}>{count}</span>
+      {incorrectClass
+      ? <span className={s.incorrect}>{incorrect}</span>
+      : <span className={count === maxValue ? s.number_red : s.number}>{count}</span>}
     </div>
   )
 }
 
-export default NumberCount

@@ -1,33 +1,36 @@
 import React from 'react'
-// import { ValueButtonType } from '../App'
 import { Button } from './Button'
 import s from "./Display.module.css"
-import NumberCount from './NumberCount'
+import {NumberCount} from './NumberCount'
 import ss from './Button.module.css'
+import { TitleType } from '../App'
 
 export type CounterType = {
   count: number
-  resetCount: () => void
-  incCount: () => void
-  settingsCount: () => void
-  valueButton: string
+  descrInc: TitleType
+  descrReset: TitleType
+  callback: (value: string) => void
+  disabledCallback: (value: string) => void
+  disableButton: boolean
+  titleMax: number
+  titleStart: number
+  incorrectClass: boolean
 }
 
 
-export const Counter: React.FC<CounterType> = ({count, valueButton, incCount, resetCount, settingsCount}) => {
+export const Counter: React.FC<CounterType> = ({count, descrReset, descrInc,callback, disabledCallback,disableButton, titleMax, incorrectClass}) => {
   return (
     <div className={s.app_wrapper}>
       <div className={s.app}>
         <div className={s.display}>
-          <NumberCount count={count}/>
+          <NumberCount count={count} maxValue={titleMax} incorrectClass={incorrectClass}/>
         </div>
         <div className={ss.counter_wrapper}>
-          {/* <Button valueButton={valueButton} incCount={incCount} resetCount={resetCount} settingsCount={settingsCount}/> */}
-          {/* <Button valueButton={valueButton} resetCount={resetCount} incCount={incCount} settingsCount={settingsCount}/> */}
+          <Button descr={descrInc} callback={callback} count={count} disabledCallback={disabledCallback} disableButton={disableButton} />
+          <Button descr={descrReset} callback={callback} count={count} disabledCallback={disabledCallback} disableButton={disableButton} />
         </div>
       </div>
     </div>
   )
 }
 
-export default Counter
