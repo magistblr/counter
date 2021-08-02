@@ -15,53 +15,55 @@ export const App = () => {
   let descrReset: TitleType = "reset"
   let descrSet: TitleType = "set"
 
-
   let [count, setCount] = useState(0)
   let [maxValue, setMaxValue] = useState(0)
   let [startValue, setStartValue] = useState(0)
-  let [text, setText] = useState("Incorrect value!")
+  let [text, setText] = useState("enter values and press 'set'")
+  let [disable, setDisable] = useState(false)
 
   const incorrectClass: boolean = (startValue < 0) || (maxValue < 0) || (startValue >= maxValue)
 
   const incorrect = "Incorrect value!"
 
-
     const onText = () => {
       if(incorrectClass){
         setText(incorrect)
-      } if(count === 0){
+      }if(!disable && maxValue !== 0){
         setText("enter values and press 'set'")
-      }else setText("enter values and press 'set'")
+      }
     }
+    console.log(disable);
 
+    console.log(text);
 
-    function settingsCount() {
-      onText()
-      return setCount(startValue)
-    }
 
     const inputValueMax = (value: number) => {
       onText()
       setMaxValue(value)
     }
-
+    
     const inputValueStart = (value: number) => {
       onText()
       setStartValue(value)
     }
-
+    
     const incCount = () => {
       onText()
       if(count < maxValue){
         setCount(count + 1)
       }
     }
-
+    
     const resetCount = () => {
       onText()
       setCount(count = startValue)
     }
-
+    
+    function settingsCount() {
+      onText()
+      setDisable(true)
+      return setCount(startValue)
+    }
 
   const onclick = (value: string) => {
       onText()
@@ -93,6 +95,9 @@ export const App = () => {
                   callbackInputValueMax={inputValueMax}
                   incorrectClass={incorrectClass}
                   text={text}
+                  disable={disable}
+                  setDisable={setDisable}
+                  setText={setText}
                   />
         <Counter  count={count}
                   callback={onclick}
@@ -102,6 +107,7 @@ export const App = () => {
                   titleStart={startValue}
                   incorrectClass={incorrectClass}
                   text={text}
+                  disable={disable}
                   />
     </div>
   );

@@ -14,10 +14,11 @@ export type CounterType = {
   titleStart: number
   incorrectClass: boolean
   text: string
+  disable: boolean
 }
 
 
-export const Counter: React.FC<CounterType> = ({count, descrReset, descrInc,callback, titleMax, incorrectClass, titleStart, text}) => {
+export const Counter: React.FC<CounterType> = ({count, descrReset, descrInc,callback, titleMax, incorrectClass, titleStart, text, disable}) => {
   return (
     <div className={s.app_wrapper}>
       <div className={s.app}>
@@ -25,8 +26,8 @@ export const Counter: React.FC<CounterType> = ({count, descrReset, descrInc,call
           <NumberCount count={count} maxValue={titleMax} incorrectClass={incorrectClass} text={text}/>
         </div>
         <div className={ss.counter_wrapper}>
-          <Button descr={descrInc} callback={callback} count={count}  maxValue={titleMax} incorrectClass={incorrectClass} startValue={titleStart} text={text}/>
-          <Button descr={descrReset} callback={callback} count={count}  maxValue={titleMax} incorrectClass={incorrectClass} startValue={titleStart} text={text}/>
+          <Button descr={descrInc} callback={callback} count={count}  maxValue={titleMax} incorrectClass={incorrectClass} startValue={titleStart} text={text} disableSet={disable}/>
+          <Button descr={descrReset} callback={callback} count={count}  maxValue={titleMax} incorrectClass={incorrectClass} startValue={titleStart} text={text} disableSet={disable}/>
         </div>
       </div>
     </div>

@@ -10,10 +10,11 @@ export type ButtonType = {
   incorrectClass: boolean
   startValue: number
   text: string
+  disableSet: boolean
 };
 
 
-export const Button: React.FC<ButtonType> = ({descr, callback, count, maxValue, incorrectClass, startValue, text}) => {
+export const Button: React.FC<ButtonType> = ({descr, callback, count, maxValue, incorrectClass, startValue, text, disableSet}) => {
 
   let [valueButton, setValueButton] = useState<TitleType>("")
 
@@ -47,11 +48,10 @@ export const Button: React.FC<ButtonType> = ({descr, callback, count, maxValue, 
       return true
     }if((valueButton === "reset") && (count <= startValue) || incorrectClass){
       return true
-    }if((valueButton === "set") && (text === "Incorrect value!")){
+    }if((valueButton === "set") && (disableSet)){
       return true
     } else return false
   }
-
 
 
   return (
