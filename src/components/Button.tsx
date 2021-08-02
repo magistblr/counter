@@ -44,15 +44,18 @@ export const Button: React.FC<ButtonType> = ({descr, callback, count, maxValue, 
   }
 
   const disable = () => {
-    if((valueButton === "inc") && (count === maxValue) || incorrectClass){
+    if((valueButton === "inc") && (!disableSet) || (count === maxValue) || incorrectClass){
       return true
-    }if((valueButton === "reset") && (count <= startValue) || incorrectClass){
+    }if((valueButton === "reset") && (!disableSet) || (count === startValue && count < 0) || incorrectClass){
       return true
     }if((valueButton === "set") && (disableSet)){
       return true
     } else return false
   }
 
+  console.log(count);
+  
+  //допилить кнопку reset
 
   return (
     <div className={s.btn_wrapper}>

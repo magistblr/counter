@@ -18,7 +18,7 @@ export const App = () => {
   let [count, setCount] = useState(0)
   let [maxValue, setMaxValue] = useState(0)
   let [startValue, setStartValue] = useState(0)
-  let [text, setText] = useState("enter values and press 'set'")
+  let [text, setText] = useState("")
   let [disable, setDisable] = useState(false)
 
   const incorrectClass: boolean = (startValue < 0) || (maxValue < 0) || (startValue >= maxValue)
@@ -28,10 +28,13 @@ export const App = () => {
     const onText = () => {
       if(incorrectClass){
         setText(incorrect)
-      }if(!disable && maxValue !== 0){
+      }if(!disable && !incorrectClass){
         setText("enter values and press 'set'")
       }
     }
+
+    console.log(maxValue);
+    
     console.log(disable);
 
     console.log(text);
@@ -76,12 +79,8 @@ export const App = () => {
     }
   }
 
-  // const disabled = (value: string) => {
-  //   if((incorrectClass) && (value === "inc")) {
-  //     setDisableButton(true)
-  //   }else setDisableButton(false)
-  // }
 
+ console.log(count);
  
 
   return (
@@ -98,6 +97,7 @@ export const App = () => {
                   disable={disable}
                   setDisable={setDisable}
                   setText={setText}
+                  setCount={setCount}
                   />
         <Counter  count={count}
                   callback={onclick}

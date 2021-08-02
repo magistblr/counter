@@ -17,21 +17,24 @@ export type SettingsType = {
   disable: boolean
   setDisable: (value: boolean) => void
   setText: (value: string) => void
+  setCount:(value: number) => void
 }
 
-export const Settings: React.FC<SettingsType> = ({descrSet, callback, titleStart, titleMax, callbackInputValueStart, callbackInputValueMax,count, incorrectClass, text, disable, setDisable, setText}) => {
+export const Settings: React.FC<SettingsType> = ({descrSet, callback, titleStart, titleMax, callbackInputValueStart, callbackInputValueMax,count, incorrectClass, text, disable, setDisable, setCount}) => {
 
   let [valueMax, setValueMax] = useState(0)
   let [valueStart, setValueStart] = useState(0)
 
   const onChangeMaxHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setValueMax(+e.currentTarget.value)
+    setCount(-1)
     setDisable(false)
   }
   callbackInputValueMax(valueMax)
 
   const onChangeStartHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setValueStart(+e.currentTarget.value)
+    setCount(-1)
     setDisable(false)
   }
 

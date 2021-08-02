@@ -23,7 +23,7 @@ export const Counter: React.FC<CounterType> = ({count, descrReset, descrInc,call
     <div className={s.app_wrapper}>
       <div className={s.app}>
         <div className={s.display}>
-          <NumberCount count={count} maxValue={titleMax} incorrectClass={incorrectClass} text={text}/>
+          <NumberCount count={count} maxValue={titleMax} incorrectClass={incorrectClass} text={text} disable={disable}/>
         </div>
         <div className={ss.counter_wrapper}>
           <Button descr={descrInc} callback={callback} count={count}  maxValue={titleMax} incorrectClass={incorrectClass} startValue={titleStart} text={text} disableSet={disable}/>
