@@ -14,7 +14,7 @@ export type ButtonType = {
 };
 
 
-export const Button: React.FC<ButtonType> = ({descr, callback, count, maxValue, incorrectClass, startValue, text, disableSet}) => {
+export const Button: React.FC<ButtonType> = ({descr, callback, count, maxValue, incorrectClass, startValue, disableSet}) => {
 
   let [valueButton, setValueButton] = useState<TitleType>("")
 
@@ -44,17 +44,16 @@ export const Button: React.FC<ButtonType> = ({descr, callback, count, maxValue, 
   }
 
   const disable = () => {
-    if((valueButton === "inc") && (!disableSet) || (count === maxValue) || incorrectClass){
+    if((valueButton === "inc") && ((!disableSet) || (count === maxValue) || incorrectClass)){
       return true
-    }if((valueButton === "reset") && (!disableSet) || (count === startValue && count < 0) || incorrectClass){
+    }if((valueButton === "reset") && ((count <= startValue) || (!disableSet) || incorrectClass)){
       return true
-    }if((valueButton === "set") && (disableSet)){
+    }if((valueButton === "set") && (disableSet) || incorrectClass){
       return true
     } else return false
   }
 
-  console.log(count);
-  
+
   //допилить кнопку reset
 
   return (

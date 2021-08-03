@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import './App.module.css';
 import { Counter } from './components/Counter';
 import s from "./App.module.css"
@@ -21,6 +21,9 @@ export const App = () => {
   let [text, setText] = useState("")
   let [disable, setDisable] = useState(false)
 
+
+
+
   const incorrectClass: boolean = (startValue < 0) || (maxValue < 0) || (startValue >= maxValue)
 
   const incorrect = "Incorrect value!"
@@ -33,11 +36,6 @@ export const App = () => {
       }
     }
 
-    console.log(maxValue);
-    
-    console.log(disable);
-
-    console.log(text);
 
 
     const inputValueMax = (value: number) => {
@@ -80,7 +78,6 @@ export const App = () => {
   }
 
 
- console.log(count);
  
 
   return (

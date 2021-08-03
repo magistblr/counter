@@ -1,4 +1,4 @@
-import React, { ChangeEvent, HtmlHTMLAttributes, useState } from 'react'
+import React, { ChangeEvent, HtmlHTMLAttributes, useEffect, useState } from 'react'
 import { TitleType } from '../App'
 import { Button } from './Button'
 import s from "./Display.module.css"
@@ -25,6 +25,26 @@ export const Settings: React.FC<SettingsType> = ({descrSet, callback, titleStart
   let [valueMax, setValueMax] = useState(0)
   let [valueStart, setValueStart] = useState(0)
 
+  useEffect(() => {
+    let valueStorageMax = localStorage.getItem('maxValue')
+    if (valueStorageMax){
+      let newValueMax = JSON.parse(valueStorageMax)
+      setValueMax(newValueMax)
+    }
+    let valueStorageStart = localStorage.getItem('startValue')
+    if (valueStorageStart){
+      let newValueStart = JSON.parse(valueStorageStart)
+      setValueStart(newValueStart)
+    }
+  }, [])
+
+
+  useEffect(() => {
+    localStorage.setItem('maxValue', JSON.stringify(valueMax))
+    localStorage.setItem('startValue', JSON.stringify(valueStart))
+  }, [valueMax, valueStart])
+
+
   const onChangeMaxHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setValueMax(+e.currentTarget.value)
     setCount(-1)
@@ -37,8 +57,10 @@ export const Settings: React.FC<SettingsType> = ({descrSet, callback, titleStart
     setCount(-1)
     setDisable(false)
   }
-
   callbackInputValueStart(valueStart)
+  
+  // useEffect(() => {
+  //   }, [onChangeMaxHandler, onChangeStartHandler])
 
   let inputClass = incorrectClass ? s.input_incorrect : s.input
 
