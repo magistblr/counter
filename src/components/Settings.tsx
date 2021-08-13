@@ -58,9 +58,7 @@ export const Settings: React.FC<SettingsType> = ({descrSet, callback, titleStart
     setDisable(false)
   }
   callbackInputValueStart(valueStart)
-  
-  // useEffect(() => {
-  //   }, [onChangeMaxHandler, onChangeStartHandler])
+
 
   let inputClass = incorrectClass ? s.input_incorrect : s.input
 

@@ -54,7 +54,7 @@ export const Button: React.FC<ButtonType> = ({descr, callback, count, maxValue, 
   }
 
 
-  //допилить кнопку reset
+
 
   return (
     <div className={s.btn_wrapper}>
